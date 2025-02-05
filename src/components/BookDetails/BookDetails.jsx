@@ -1,11 +1,23 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { addToStoredReadList } from "../../utility/addToDb";
+import { addToViewList } from "../../utility/viewDetails";
+
 
 
 const BookDetails = () => {
+    function App(){
+        const notify = () => toast("Wow so easy!");}
+   
     const handleMarkeAsRead=(id)=>{
         addToStoredReadList(id)
 
+    }
+    const handleViewList=(id)=>{
+         addToViewList(id)
+    }
+    const navigate=useNavigate()
+    const handleBack=()=>{
+        navigate(-1)
     }
     const {bookId}=useParams();
     const id=parseInt(bookId)
@@ -48,9 +60,12 @@ const BookDetails = () => {
     </div>
 </div>
 
-      <button onClick={()=>handleMarkeAsRead(bookId)} className="btn btn-outline mr-4">Read</button>
-      <button className="btn btn-accent">Wishlist</button>
+      <button onClick={()=>handleMarkeAsRead(bookId)} className="btn btn-outline mr-4 text-purple-400">Mark As Read </button>
+     
+      <button onCanPlay={handleViewList} className="btn btn-accent mr-4 ">Add To Wishlist</button>
+      <button onClick={handleBack} className="btn btn-outline text-blue-600 ">Go back</button>
     </div>
+    
   </div>
 </div>
     );
