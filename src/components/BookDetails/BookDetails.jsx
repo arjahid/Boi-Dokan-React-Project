@@ -1,7 +1,12 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList } from "../../utility/addToDb";
 
 
 const BookDetails = () => {
+    const handleMarkeAsRead=(id)=>{
+        addToStoredReadList(id)
+
+    }
     const {bookId}=useParams();
     const id=parseInt(bookId)
     const data=useLoaderData();
@@ -43,7 +48,7 @@ const BookDetails = () => {
     </div>
 </div>
 
-      <button className="btn btn-outline mr-4">Read</button>
+      <button onClick={()=>handleMarkeAsRead(bookId)} className="btn btn-outline mr-4">Read</button>
       <button className="btn btn-accent">Wishlist</button>
     </div>
   </div>
